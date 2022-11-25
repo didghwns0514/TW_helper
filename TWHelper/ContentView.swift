@@ -10,6 +10,7 @@ import SwiftUI
 struct Option: Hashable{
     let title: String;
     let imageName: String;
+    let idxs: Int;
 }
 
 struct ContentView: View {
@@ -17,8 +18,9 @@ struct ContentView: View {
     @State var currentOption = 0;
     
     let options: [Option] = [
-        .init(title: "Home1", imageName: "house1"),
-        .init(title: "Home2", imageName: "house2"),
+        .init(title: "Home1", imageName: "house1", idxs: 0),
+        .init(title: "Home2", imageName: "house2", idxs: 1),
+        .init(title: "Home3", imageName: "house3", idxs: 2),
     ]
     
     var body: some View {
@@ -28,15 +30,23 @@ struct ContentView: View {
             );
             
             switch currentOption {
+
+            case 0:
+                MainView()
             case 1:
                 Text("about ios")
+            case 2:
+                Text("about ios")
+                
             default:
                 MainView()
             }
 
         }
-        .frame(minWidth: 400, minHeight: 100, maxHeight: 100)
+//        .fixedSize()
+        .frame(minWidth: 400, minHeight: 300, maxHeight: 300)
     }
+
 }
 
 struct ListView: View{
@@ -53,8 +63,9 @@ struct ListView: View{
 //
 //
                     Text(option.title)
+                        .padding()
                         .foregroundColor(current == option ?
-                                         Color(.linkColor) : Color(.labelColor)
+                                         Color(.yellow) : Color(.labelColor)
                         )
 //                        .resizable( )
 //                        .aspectRatio(contentMode: .fit)
@@ -62,21 +73,53 @@ struct ListView: View{
 //                    Spacer()
                 }.padding()
                     .onTapGesture {
-                        if currentSelection == 1{
+//                        if currentSelection == 1{
+//                            currentSelection = 0
+//                        } else if currentSelection == 0{
+//                            currentSelection = 1
+//                        }
+                        if option.idxs == 0{
                             currentSelection = 0
-                        } else if currentSelection == 0{
+                        } else if option.idxs == 1{
                             currentSelection = 1
+                        } else if option.idxs == 2{
+                            currentSelection = 2
                         }
                     }
-//                Spacer()
+                Spacer()
+//                indexnum = indexnum + 1
             }
+//                            Spacer()
         }
     }
 }
 
 struct MainView: View{
+    @State var text1: String = ""
+    @State var text2: String = ""
+    
     var body: some View{
-        Text("List")
+        VStack{
+            TextEditor(text: $text1)
+              .cornerRadius(2)
+              .padding(1)
+              .background(.yellow)
+            
+            TextEditor(text: $text2)
+              .cornerRadius(2)
+              .padding(1)
+              .background(.yellow)
+              .disabled(true)
+            HStack{
+                Button("Copy Normal") {
+                        print("Normal")
+                        }
+                Button("Copy Formatted") {
+                        print("Formatted")
+                        }
+            }
+        }
+        
     }
 }
 
