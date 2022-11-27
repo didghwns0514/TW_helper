@@ -23,3 +23,5 @@ https://www.hohyeonmoon.com/blog/swiftui-tutorial-buttons/
 https://www.hohyeonmoon.com/blog/swiftui-tutorial-textfield/
 
 https://developer.apple.com/documentation/swiftui/hovereffect
+
+https://developer.apple.com/forums/thread/131715

@@ -111,13 +111,15 @@ struct MainView: View{
               .background(.yellow)
               .disabled(true)
             HStack{
-                Button("Copy Normal") {
+
+                Button("Grammer Check") {
                         print("Normal")
                         }
                 Button("Copy Formatted") {
                         print("Formatted")
                         }
             }
+            Spacer()
         }
         
     }
@@ -128,3 +130,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
